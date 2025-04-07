@@ -1,6 +1,8 @@
 import React from 'react';
 import './Footer.css';
 
+import instagram from '../../assets/instagram.png';
+
 const Footer = () => {
   return (
     <footer className="footer">
@@ -17,7 +19,9 @@ const Footer = () => {
         <div className="footer-section">
           <h4>Follow Us</h4>
           <div className="social-icons">
-            <a href="https://www.facebook.com"><i className="fab fa-facebook-f"></i></a>
+            <a href="https://www.facebook.com">
+                <img src={instagram} alt="Cart" className="icon" />
+            <i className="fab fa-facebook-f"></i></a>
             <a href="https://www.instagram.com"><i className="fab fa-instagram"></i></a>
             <a href="https://www.twitter.com"><i className="fab fa-twitter"></i></a>
             <a href="https://www.pinterest.com"><i className="fab fa-pinterest"></i></a>
