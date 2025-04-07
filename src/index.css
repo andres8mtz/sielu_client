@@ -40,7 +40,7 @@ a:hover {
 /* Add some basic styles for buttons */
 button {
   padding: 10px 20px;
-  background-color: #f6f7f6;
+  background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
@@ -48,7 +48,7 @@ button {
 }
 
 button:hover {
-  background-color: #f6f7f6;
+  background-color: #0056b3;
 }
 
 /* Add some basic styles for images */
