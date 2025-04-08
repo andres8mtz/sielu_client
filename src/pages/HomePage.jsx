@@ -5,12 +5,12 @@ import multiuso from "../assets/mobile-image.jpg";
 
 const products = [
   {
-    image: 'https://res.cloudinary.com/dkndx7uio/image/upload/v1744126833/multiuso_p3xcew.png',
+    image: 'https://res.cloudinary.com/dkndx7uio/image/upload/v1744131089/multiuso-rojo_awwuw0.png',
     name: 'Multiuso',
-    colors: ['#ff0000', '#ff69b4', '#ff1493']
+    colors: ['#b4301e', '#ff69b4', '#ff1493']
   },
   {
-    image: 'https://res.cloudinary.com/dkndx7uio/image/upload/v1744126833/multiuso_p3xcew.png',
+    image: 'https://res.cloudinary.com/dkndx7uio/image/upload/v1744130973/balsamo-dos_cbugzo.png',
     name: 'Foundation',
     colors: ['#f5deb3', '#d2b48c', '#deb887']
   },

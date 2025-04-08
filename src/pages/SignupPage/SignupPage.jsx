@@ -1,11 +1,43 @@
 import React, { useState } from 'react';
 import './SignupPage.css';
 import registerImage from '../../assets/register.jpg'; // Replace with your image path
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link, useNavigate } from 'react-router-dom'; // Import Link from react-router-dom
+import axios from 'axios'; // Import axios for making HTTP requests
 
-const SignupPage = () => {
+const API_URL = "http://localhost:5005";
+
+function SignupPage(props) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [errorMessage, setErrorMessage] = useState(undefined);
   const [isLogin, setIsLogin] = useState(true);
 
+  const navigate = useNavigate();
+  
+  const handleEmail = (e) => setEmail(e.target.value);
+  const handlePassword = (e) => setPassword(e.target.value);
+  const handleName = (e) => setName(e.target.value);
+ 
+  
+  const handleSignupSubmit = (e) => {
+    e.preventDefault();
+    // Create an object representing the request body
+    const requestBody = { email, password, name };
+ 
+    // Make an axios request to the API
+    // If the POST request is a successful redirect to the login page
+    // If the request resolves with an error, set the error message in the state
+    axios.post(`${API_URL}/auth/signup`, requestBody)
+      .then((response) => {
+        navigate('/login');
+      })
+      .catch((error) => {
+        const errorDescription = error.response.data.message;
+        setErrorMessage(errorDescription);
+      })
+  }; 
+  
   return (
     <div className="container">
       <div className="image-section">
@@ -45,7 +77,9 @@ const SignupPage = () => {
           </div>
       </div>
     </div>
-  );
+  )
 };
+
+
 
 export default SignupPage;
