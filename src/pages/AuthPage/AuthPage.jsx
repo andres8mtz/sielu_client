@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './AuthPage.css';
 import registerImage from '../../assets/register.jpg'; // Replace with your image path
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -18,14 +19,16 @@ const AuthPage = () => {
           >
             LOGIN
           </span>
+          <Link to="/account/signup">
           <span 
             className={!isLogin ? 'active' : ''} 
             onClick={() => setIsLogin(false)}
           >
+            
             REGISTER
           </span>
+          </Link>
         </div>
-        {isLogin ? (
           <div id="login-form">
             <form action="/login_process" method="POST">
               <label htmlFor="username">Username:</label>
@@ -35,17 +38,6 @@ const AuthPage = () => {
               <button type="submit">Login</button>
             </form>
           </div>
-        ) : (
-          <div id="register-form">
-            <form action="/register_process" method="POST">
-              <label htmlFor="new-username">Username:</label>
-              <input type="text" id="new-username" name="new-username" required />
-              <label htmlFor="new-password">Password:</label>
-              <input type="password" id="new-password" name="new-password" required />
-              <button type="submit">Register</button>
-            </form>
-          </div>
-        )}
       </div>
     </div>
   );

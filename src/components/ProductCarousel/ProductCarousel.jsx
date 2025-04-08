@@ -1,117 +1,72 @@
-import React, { useRef } from "react";
-import "./ProductCarousel.css";
-import next_icon from "";
-import back_icon from "../assets/img/pfeil_links_blau.png";
-import Testimonials_1 from "";
-import Testimonials_2 from "";
-import Testimonials_3 from "";
-import Testimonials_4 from "";
+import React, { useState, useEffect } from 'react';
+import './ProductCarousel.css';
 
-function ProductCarousel() {
-  const slider = useRef();
-  let tx = 0;
-
-  const slideForward = () => {
-    if (tx > -50) {
-      tx -= 25;
-    }
-    slider.current.style.transform = `translateX(${tx}%)`;
-  };
-
-  const slideBackward = () => {
-    if (tx < 0) {
-      tx += 25;
-    }
-    slider.current.style.transform = `translateX(${tx}%)`;
-  };
-
-  return (
-    <div className="testimonials" id="testimonials">
-      <img
-        src={back_icon}
-        alt=""
-        className="back-btn"
-        onClick={slideBackward}
-      />
-      <img src={next_icon} alt="" className="next-btn" onClick={slideForward} />
-      <div className="slider">
-        <ul ref={slider}>
-          <li>
-            <div className="slide">
-              <div className="user-info">
-                <img src={Testimonials_1} alt="" />
-                <div>
-                  <h3>Familie Schulz</h3>
-                  <span>Grundschule Berlin</span>
+const ProductCarousel = ({ products }) => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [visibleProducts, setVisibleProducts] = useState(3);
+    const [selectedColors, setSelectedColors] = useState({});
+  
+    useEffect(() => {
+      const updateVisibleProducts = () => {
+        setVisibleProducts(window.innerWidth > 768 ? 3 : 1);
+      };
+  
+      window.addEventListener('resize', updateVisibleProducts);
+      updateVisibleProducts();
+  
+      return () => window.removeEventListener('resize', updateVisibleProducts);
+    }, []);
+  
+    const nextSlide = () => {
+      setCurrentIndex((prevIndex) => (prevIndex + visibleProducts) % products.length);
+    };
+  
+    const prevSlide = () => {
+      setCurrentIndex((prevIndex) => (prevIndex - visibleProducts + products.length) % products.length);
+    };
+  
+    const getVisibleProducts = () => {
+      return products.slice(currentIndex, currentIndex + visibleProducts);
+    };
+  
+    const handleColorClick = (productIndex, color) => {
+      setSelectedColors((prevSelectedColors) => ({
+        ...prevSelectedColors,
+        [productIndex]: color
+      }));
+    };
+  
+    return (
+      <div className="carousel">
+        <button className="carousel-button" onClick={prevSlide}>&lt;</button>
+        <div className="carousel-items">
+          {getVisibleProducts().map((product, index) => (
+            <div key={index} className="carousel-item">
+              <img 
+                src={selectedColors[index] ? `images/${product.name.toLowerCase()}_${selectedColors[index]}.jpg` : product.image} 
+                alt={product.name} 
+                className="product-image" 
+              />
+              <h3 className="product-name">{product.name}</h3>
+              {product.colors && (
+                <div className="color-slider">
+                  {product.colors.map((color, idx) => (
+                    <div 
+                      key={idx} 
+                      className="color-swatch" 
+                      style={{ backgroundColor: color }} 
+                      onClick={() => handleColorClick(index, color)}
+                    ></div>
+                  ))}
                 </div>
-              </div>
-              <p>
-                My daughter took part in the competition and had a lot
-                Have fun with it. blah blah blah All of my daughter's coloring pictures that we
-                have kept at home, were also provided by Eridian
-                scanned. Now we keep these on our PC and in
-                Network.
-              </p>
+              )}
+              <button className="add-to-bag">ADD TO BAG</button>
             </div>
-          </li>
-          <li>
-            <div className="slide">
-              <div className="user-info">
-                <img src={Testimonials_2} alt="" />
-                <div>
-                  <h3>Familie Schulz</h3>
-                  <span>Grundschule Berlin</span>
-                </div>
-              </div>
-              <p>
-                My daughter took part in the competition and had a lot
-                Have fun with it. blah blah blah All of my daughter's coloring pictures that we
-                have kept at home, were also provided by Eridian
-                scanned. Now we keep these on our PC and in
-                Network.
-              </p>
-            </div>
-          </li>
-          <li>
-            <div className="slide">
-              <div className="user-info">
-                <img src={Testimonials_3} alt="" />
-                <div>
-                  <h3>Familie Schulz</h3>
-                  <span>Grundschule Berlin</span>
-                </div>
-              </div>
-              <p>
-                My daughter took part in the competition and had a lot
-                Have fun with it. blah blah blah All of my daughter's coloring pictures that we
-                have kept at home, were also provided by Eridian
-                scanned. Now we keep these on our PC and in
-                Network.
-              </p>
-            </div>
-          </li>
-          <li>
-            <div className="slide">
-              <div className="user-info">
-                <img src={Testimonials_4} alt="" />
-                <div>
-                  <h3>Familie Schulz</h3>
-                  <span>Grundschule Berlin</span>
-                </div>
-              </div>
-              <p>
-                My daughter took part in the competition and had a lot
-                Have fun with it. blah blah blah All of my daughter's coloring pictures that we
-                have kept at home, were also provided by Eridian
-                scanned. Now we keep these on our PC and in
-                Network.
-              </p>
-            </div>
-          </li>
-        </ul>
+          ))}
+        </div>
+        <button className="carousel-button" onClick={nextSlide}>&gt;</button>
       </div>
-    </div>
-  );
-}
-
-export default ProductCarousel;
+    );
+  };
+  
+  export default ProductCarousel;

@@ -19,9 +19,9 @@
     transition: transform 0.3s ease;
   }
   
-  .header-link:hover .header-image {
+  /* .header-link:hover .header-image {
     transform: scale(1.02); 
-  }
+  } */
   
   .mobile-image {
     display: none;
