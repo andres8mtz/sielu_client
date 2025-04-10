@@ -4,26 +4,28 @@ import registerImage from '../../assets/register.jpg'; // Replace with your imag
 import { Link, useNavigate } from 'react-router-dom'; // Import Link from react-router-dom
 import axios from 'axios'; // Import axios for making HTTP requests
 
-const API_URL = "http://localhost:5005";
+const API_URL = "https://sielu-backend.onrender.com";
 
 function SignupPage(props) {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
   const [isLogin, setIsLogin] = useState(true);
 
   const navigate = useNavigate();
   
+  const handleFirstName = (e) => setFirstName(e.target.value);
+  const handleLastName = (e) => setLastName(e.target.value);
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
-  const handleName = (e) => setName(e.target.value);
  
   
   const handleSignupSubmit = (e) => {
     e.preventDefault();
     // Create an object representing the request body
-    const requestBody = { email, password, name };
+    const requestBody = { email, password, firstName, lastName };
  
     // Make an axios request to the API
     // If the POST request is a successful redirect to the login page
@@ -63,17 +65,18 @@ function SignupPage(props) {
         </div>
        
           <div id="register-form">
-            <form action="/register_process" method="POST">
-            <label htmlFor="new-firstname">First name:</label>
-              <input type="text" id="new-firstname" name="new-firstname" required />
+            <form action="/register_process" onSubmit={handleSignupSubmit} method="POST">
+              <label htmlFor="new-firstname">First name:</label>
+              <input type="text" name="new-first_name" value={firstName} id="new-firstname" onChange={handleFirstName} required />
               <label htmlFor="new-lastname">Last name:</label>
-              <input type="text" id="new-lastname" name="new-lastname" required />
-              <label htmlFor="new-username">Username:</label>
-              <input type="text" id="new-username" name="new-username" required />
+              <input type="text" name="new-lastname" value={lastName} id="new-lastname" onChange={handleLastName} required />
+              <label htmlFor="new-email">Email:</label>
+              <input type="email" name="new-email" value={email} id="new-email" onChange={handleEmail} required />
               <label htmlFor="new-password">Password:</label>
-              <input type="password" id="new-password" name="new-password" required />
+              <input type="password" name="new-password" value={password} id="new-password" onChange={handlePassword} required />
               <button type="submit">Register</button>
             </form>
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
           </div>
       </div>
     </div>

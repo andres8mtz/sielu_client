@@ -76,7 +76,7 @@
   }
   
   .logo {
-    width: 100px; /* Adjust size as needed */
+    width: 100px; 
   }
   
   .navbar-right {
@@ -127,7 +127,7 @@
   .slider-menu ul {
     list-style: none;
     padding: 0;
-    margin-top: 60px; /* Adjust for close icon */
+    margin-top: 60px;
   }
   
   .slider-menu ul li {

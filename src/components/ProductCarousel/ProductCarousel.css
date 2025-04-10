@@ -89,7 +89,6 @@ body {
   color: white;
 }
 
-/* Media query for mobile devices */
 @media (max-width: 768px) {
   .carousel-items {
     flex-direction: column;

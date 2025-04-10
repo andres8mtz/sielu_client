@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './AuthPage.css';
 import registerImage from '../../assets/register.jpg'; // Replace with your image path
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { AuthContext } from "../../context/auth.context";
 
 const AuthPage = () => {
+
+
   const [isLogin, setIsLogin] = useState(true);
+  const { isLoggedIn, user } = useContext(AuthContext); // <== ADD
+
+
 
   return (
     <div className="container">
@@ -31,7 +37,7 @@ const AuthPage = () => {
         </div>
           <div id="login-form">
             <form action="/login_process" method="POST">
-              <label htmlFor="username">Username:</label>
+              <label htmlFor="username">Email:</label>
               <input type="text" id="username" name="username" required />
               <label htmlFor="password">Password:</label>
               <input type="password" id="password" name="password" required />

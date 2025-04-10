@@ -1,0 +1,84 @@
+.edit-product-page {
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .edit-product-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    margin-bottom: 5px;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .save-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    align-self: flex-start;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .edit-product-form {
+      gap: 15px;
+    }
+  
+    .form-group input,
+    .form-group textarea {
+      padding: 8px;
+    }
+  
+    .save-button {
+      padding: 8px 16px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .edit-product-form {
+      gap: 10px;
+    }
+  
+    .form-group input,
+    .form-group textarea {
+      padding: 6px;
+    }
+  
+    .save-button {
+      padding: 6px 12px;
+    }
+  }
+  
+  /* Desktop styles */
+  @media (min-width: 1024px) {
+    .edit-product-form {
+      gap: 25px;
+    }
+  
+    .form-group input,
+    .form-group textarea {
+      padding: 12px;
+    }
+  
+    .save-button {
+      padding: 12px 24px;
+    }
+  }
+  
