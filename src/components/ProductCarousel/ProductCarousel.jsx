@@ -37,6 +37,7 @@ const ProductCarousel = ({ products }) => {
     };
   
     return (
+        
       <div className="carousel">
         <button className="carousel-button" onClick={prevSlide}>&lt;</button>
         <div className="carousel-items">
