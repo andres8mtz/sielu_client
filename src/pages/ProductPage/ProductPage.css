@@ -1,68 +1,102 @@
-.product-page {
-    padding: 20px;
-    width: 100%;
-    box-sizing: border-box;
+.ProductPage {
+    margin-top: 60px; /* Space for the Navbar */
+    padding: 2em;
+    background-color: #f9f9f9;
+    color: #333;
   }
   
-  .product-details {
+  .ProductPage .content {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
   }
   
-  .product-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-  }
-  
-  .product-info {
+  .ProductPage .details {
     flex: 1;
+    text-align: left;
+  }
+  
+  .ProductPage h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.8em;
+  }
+  
+  .ProductPage img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .ProductPage p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #555;
+  }
+  
+  .author {
+    font-style: italic;
+    color: #888;
+  }
+  
+  .edit-button,
+  .delete-button {
+    margin-top: 1em;
+    padding: 0.5em 1em;
+    font-size: 0.9em;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
   }
   
   .edit-button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    margin-top: 20px;
+    background-color: #45a4f1;
+  }
+  
+  .delete-button {
+    background-color: #f9571c;
+  }
+  
+  .edit-button:hover,
+  .delete-button:hover {
+    background-color: #d353c2fb;
   }
   
   /* Responsive styles */
   @media (max-width: 768px) {
-    .product-details {
+    .ProductPage .content {
       flex-direction: column;
       align-items: center;
     }
   
-    .product-info {
+    .ProductPage h1 {
+      font-size: 2rem;
       text-align: center;
     }
   
-    .edit-button {
-      padding: 8px 16px;
+    .ProductPage img {
+      max-width: 100%;
+    }
+  
+    .edit-button,
+    .delete-button {
+      padding: 0.4em 0.8em;
+      font-size: 0.8em;
     }
   }
   
   @media (max-width: 480px) {
-    .edit-button {
-      padding: 6px 12px;
-    }
-  }
-  
-  /* Desktop styles */
-  @media (min-width: 1024px) {
-    .product-details {
-      flex-direction: row;
+    .ProductPage h1 {
+      font-size: 1.5rem;
     }
   
-    .product-info {
-      padding: 20px;
-    }
-  
-    .edit-button {
-      padding: 12px 24px;
+    .edit-button,
+    .delete-button {
+      padding: 0.3em 0.6em;
+      font-size: 0.7em;
     }
   }
   

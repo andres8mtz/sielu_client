@@ -30,6 +30,10 @@ function AdminPage() {
     getAllProducts();
   }, []);
 
+  const navigateToProductDetails = (id) => {
+    navigate(`/product/${id}`);
+  };
+
   const handleDelete = (id) => {
     axios
       .delete(`${API_URL}/api/products/${id}`)
@@ -50,13 +54,18 @@ function AdminPage() {
     navigate(`/EditProduct/${id}`);
   };
 
+    
+
+    
+
   return (
     <div className="ProductListPage">
-      <h1>Current Contestants</h1>
-      <button onClick={navigateToCreateProduct} className="nav-to-cp">
-        Create new product
-      </button>
-      <br />
+      <div className="header">
+        <h1>Products assortment</h1>
+        <button onClick={navigateToCreateProduct} className="nav-to-cp">
+          Create new product
+        </button>
+      </div>
       {isLoading ? (
         <p>Loading products...</p>
       ) : products.length === 0 ? (
@@ -77,11 +86,11 @@ function AdminPage() {
                 Delete
               </button>
               <button
-                className="edit-button"
-                onClick={() => navigateToEditProduct(product.id)}
-                aria-label={`Edit product ${product.name}`}
+                className="nav-to-pp"
+                onClick={() => navigateToProductDetails(product.id)}
+                aria-label={`View product details of ${product.name}`}
               >
-                Edit
+                Product details
               </button>
             </li>
           ))}
